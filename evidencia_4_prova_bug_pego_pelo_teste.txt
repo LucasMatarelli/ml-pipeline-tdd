@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/claude/ml_pipeline_tdd
+plugins: hypothesis-6.165.10
+collecting ... collected 1 item
+
+tests/test_prova_bug_real.py::test_propriedade_pega_bug_real_na_versao_buggy FAILED [100%]
+
+=================================== FAILURES ===================================
+________________ test_propriedade_pega_bug_real_na_versao_buggy ________________
+
+    @given(
+>       st.lists(
+                  
+            st.floats(allow_nan=False, allow_infinity=False, width=32),
+            min_size=1,
+            max_size=50,
+        )
+    )
+
+tests/test_prova_bug_real.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_prova_bug_real.py:21: in test_propriedade_pega_bug_real_na_versao_buggy
+    resultado = normalize_batch_buggy(valores)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = [0.0]
+
+    def normalize_batch_buggy(values):
+        """
+        Versão BUGADA de propósito: não trata o caso em que todos os valores
+        são iguais (max == min). Nesse caso ocorre ZeroDivisionError,
+        algo que um teste de exemplo pontual (com dados "normais") jamais
+        encontraria sozinho, mas que o teste de propriedade encontra
+        imediatamente porque o Hypothesis gera esse caso-limite sozinho.
+        """
+        minimo = min(values)
+        maximo = max(values)
+>       return [(v - minimo) / (maximo - minimo) for v in values]  # bug: sem guarda para maximo == minimo
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: float division by zero
+E       Failing test case: test_propriedade_pega_bug_real_na_versao_buggy(
+E           valores=[0.0],
+E       )
+
+src/normalize_buggy.py:11: ZeroDivisionError
+=========================== short test summary info ============================
+FAILED tests/test_prova_bug_real.py::test_propriedade_pega_bug_real_na_versao_buggy
+============================== 1 failed in 0.24s ===============================
