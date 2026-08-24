@@ -13,10 +13,8 @@ from src.normalize_buggy import normalize_batch_buggy
 )
 def test_propriedade_pega_bug_real_na_versao_buggy(valores):
     """
-    Mesma invariante de antes, agora aplicada à versão BUGADA.
-    Esperado: esse teste FALHA (ZeroDivisionError) assim que o Hypothesis
-    gerar uma lista com todos os valores iguais — provando que a
-    propriedade realmente pegaria esse bug em produção.
+    Valida a invariante [0.0, 1.0] contra a versão buggy.
+    Deve falhar com ZeroDivisionError quando min == max.
     """
     resultado = normalize_batch_buggy(valores)
     for r in resultado:
