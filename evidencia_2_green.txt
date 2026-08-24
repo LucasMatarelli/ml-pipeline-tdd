@@ -2,7 +2,7 @@
 platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
 cachedir: .pytest_cache
 hypothesis profile 'default'
-rootdir: /home/claude/ml_pipeline_tdd
+rootdir: /home/lucas/ml_pipeline_tdd
 plugins: hypothesis-6.165.10
 collecting ... collected 1 item
 
