@@ -24,4 +24,3 @@ green    -> implementação mínima de normalize_batch (min-max scaling)
 refactor -> trata lista vazia, NaN/inf e empate (max==min); adiciona testes de propriedade
 prova    -> versão bugada (sem tratar max==min) falha no teste de propriedade
 ```
-Ver `git log` para os commits reais.
