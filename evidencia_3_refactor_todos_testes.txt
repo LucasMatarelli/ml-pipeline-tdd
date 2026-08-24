@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/claude/ml_pipeline_tdd
+plugins: hypothesis-6.165.10
+collecting ... collected 7 items
+
+tests/test_normalize.py::test_normalize_batch_simple_range PASSED        [ 14%]
+tests/test_normalize_edge_cases.py::test_empty_list_raises_value_error PASSED [ 28%]
+tests/test_normalize_edge_cases.py::test_nan_raises_value_error PASSED   [ 42%]
+tests/test_normalize_edge_cases.py::test_inf_raises_value_error PASSED   [ 57%]
+tests/test_normalize_edge_cases.py::test_all_equal_values_returns_zeros PASSED [ 71%]
+tests/test_normalize_property.py::test_propriedade_saida_sempre_entre_zero_e_um PASSED [ 85%]
+tests/test_normalize_property.py::test_propriedade_minimo_vira_zero_e_maximo_vira_um_quando_ha_variacao PASSED [100%]
+
+============================== 7 passed in 0.44s ===============================
